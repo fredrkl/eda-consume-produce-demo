@@ -1,3 +1,8 @@
+# v1.0.0 (2025-10-25)
+
+## ✨ New Features
+- [`319d4b0`](https://github.com/fredrkl/eda-consume-produce-demo/commit/319d4b0)  Basic intro
+
 # [v1.3.0](https://github.com/fredrkl/template-base/compare/v1.2.0...v1.3.0) (2025-08-03)
 
 ## ✨ New Features
