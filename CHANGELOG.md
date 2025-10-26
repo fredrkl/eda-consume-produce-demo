@@ -1,3 +1,8 @@
+# [v1.1.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.0.0...v1.1.0) (2025-10-26)
+
+## ✨ New Features
+- [`bc8a8b5`](https://github.com/fredrkl/eda-consume-produce-demo/commit/bc8a8b5)  Basic web api to test produce
+
 # v1.0.0 (2025-10-25)
 
 ## ✨ New Features
