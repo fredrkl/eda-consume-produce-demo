@@ -14,6 +14,12 @@ cd eda-api
 dotnet new webapi
 ```
 
+## Kafka cluster setup
+
+I use Aiven to create a managed Kafka cluster at:
+<https://console.aiven.io/account/a530d754cb24/project/fredrkl-0955/services/kafka-14f487f0/overview>.
+
 ## Resources
 
 - <https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven>
+- <https://farfetch.github.io/kafkaflow/>
