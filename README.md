@@ -19,6 +19,14 @@ dotnet new webapi
 I use Aiven to create a managed Kafka cluster at:
 <https://console.aiven.io/account/a530d754cb24/project/fredrkl-0955/services/kafka-14f487f0/overview>.
 
+## Aiven CLI setup
+
+```bash
+avn user login --token
+```
+
+Then enter the `AIVEN_CLI_TOKEN` from the `.envrc` file.
+
 ## Resources
 
 - <https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven>
