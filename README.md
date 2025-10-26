@@ -13,3 +13,7 @@ mkdir eda-api
 cd eda-api
 dotnet new webapi
 ```
+
+## Resources
+
+- <https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven>
