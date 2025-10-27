@@ -27,6 +27,18 @@ avn user login --token
 
 Then enter the `AIVEN_CLI_TOKEN` from the `.envrc` file.
 
+### Create Kafka topic
+
+```bash
+avn service topic-create kafka-14f487f0 source-topic \
+--partitions 3 \
+--replication 3
+
+avn service topic-create kafka-14f487f0 destination-topic \
+--partitions 3 \
+--replication 3
+```
+
 ## Resources
 
 - <https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven>
