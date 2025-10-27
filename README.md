@@ -39,6 +39,14 @@ avn service topic-create kafka-14f487f0 destination-topic \
 --replication 3
 ```
 
+## Adding KafkaFlow to the project
+
+```bash
+cd eda-api
+dotnet add package KafkaFlow
+dotnet add package KafkaFlow.Microsoft.DependencyInjection
+```
+
 ## Resources
 
 - <https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/event-driven>
