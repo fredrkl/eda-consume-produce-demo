@@ -1,3 +1,9 @@
+# [v1.2.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.1.0...v1.2.0) (2025-10-27)
+
+## ✨ New Features
+- [`9276c81`](https://github.com/fredrkl/eda-consume-produce-demo/commit/9276c81)  Adding KafkaFlow 
+- [`89fbadb`](https://github.com/fredrkl/eda-consume-produce-demo/commit/89fbadb)  Do not need https redirection for demo
+
 # [v1.1.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.0.0...v1.1.0) (2025-10-26)
 
 ## ✨ New Features
