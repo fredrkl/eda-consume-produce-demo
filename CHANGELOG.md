@@ -1,3 +1,8 @@
+# [v1.6.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.5.0...v1.6.0) (2025-10-29)
+
+## ✨ New Features
+- [`b6ec983`](https://github.com/fredrkl/eda-consume-produce-demo/commit/b6ec983)  Produce message on http endpoint
+
 # [v1.5.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.4.0...v1.5.0) (2025-10-29)
 
 ## ✨ New Features
