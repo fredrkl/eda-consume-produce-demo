@@ -23,9 +23,9 @@ builder.Services.AddKafka(kafka => {
       security.EnableSslCertificateVerification = true;
     });
     cluster.AddProducer("producer-1", producer => {
-    producer.AddMiddlewares(middlewares => {
+      producer.AddMiddlewares(middlewares => {
         middlewares.AddSerializer<JsonCoreSerializer>();
-    });
+      });
       producer.DefaultTopic("source-topic");
     });
   });
