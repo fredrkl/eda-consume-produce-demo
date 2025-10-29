@@ -44,8 +44,12 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", (IProducerAccessor produce) =>
+app.MapGet("/weatherforecast", async (IProducerAccessor producerAccessor) =>
 {
+  var producer = producerAccessor.GetProducer("producer-1");
+  WeatherForecast forecast_to_kafka = new(DateOnly.FromDateTime(DateTime.Now), Random.Shared.Next(-20, 55), "Warm");
+  _ = await producer.ProduceAsync(null, forecast_to_kafka);
+
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
         (
@@ -62,7 +66,7 @@ var producerAccessor = app.Services.GetRequiredService<IProducerAccessor>();
 var producer = producerAccessor.GetProducer("producer-1");
 WeatherForecast forecast = new(DateOnly.FromDateTime(DateTime.Now), Random.Shared.Next(-20, 55), "Warm");
 
-await producer.ProduceAsync(null, forecast);
+//await producer.ProduceAsync(null, forecast);
 
 var kafkaBus = app.Services.CreateKafkaBus();
 await kafkaBus.StartAsync();
