@@ -44,7 +44,7 @@ var summaries = new[]
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
 
-app.MapGet("/weatherforecast", () =>
+app.MapGet("/weatherforecast", (IProducerAccessor produce) =>
 {
     var forecast =  Enumerable.Range(1, 5).Select(index =>
         new WeatherForecast
@@ -60,7 +60,7 @@ app.MapGet("/weatherforecast", () =>
 
 var producerAccessor = app.Services.GetRequiredService<IProducerAccessor>();
 var producer = producerAccessor.GetProducer("producer-1");
-WeatherForecast forecast = new(DateOnly.FromDateTime(DateTime.Now), 25, "Warm");
+WeatherForecast forecast = new(DateOnly.FromDateTime(DateTime.Now), Random.Shared.Next(-20, 55), "Warm");
 
 await producer.ProduceAsync(null, forecast);
 
