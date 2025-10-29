@@ -1,4 +1,6 @@
 using KafkaFlow;
+using KafkaFlow.Producers;
+using KafkaFlow.Serializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,39 +8,31 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// KafkaFlow
+Console.WriteLine("ACCESS_KEY:{0}", builder.Configuration["ACCESS_KEY"]);
+Console.WriteLine("ACCESS_CERTIFICATE:{0}", builder.Configuration["ACCESS_CERTIFICATE"]);
+Console.WriteLine("CA_CERTIFICATE:{0}", builder.Configuration["CA_CERTIFICATE"]);
+
 builder.Services.AddKafka(kafka => {
   kafka.AddCluster(cluster => {
     cluster.WithBrokers(["kafka-14f487f0-fredrkl-0955.k.aivencloud.com:14350"]);
     cluster.WithSecurityInformation(security => {
       security.SecurityProtocol = KafkaFlow.Configuration.SecurityProtocol.Ssl;
-      security.SslCaPem = builder.Configuration["KAFKA_CA_CERTIFICATE"];
-      security.SslCertificatePem = builder.Configuration["KAFKA_ACCESS_CERTIFICATE"];
-      security.SslKeyPem = builder.Configuration["KAFKA_ACCESS_KEY"];
+      security.SslKeyPem = builder.Configuration["ACCESS_KEY"];
+      security.SslCertificatePem = builder.Configuration["ACCESS_CERTIFICATE"];
+      security.SslCaPem = builder.Configuration["CA_CERTIFICATE"];
+      security.EnableSslCertificateVerification = true;
+    });
+    cluster.AddProducer("producer-1", producer => {
+    producer.AddMiddlewares(middlewares => {
+        middlewares.AddSerializer<JsonCoreSerializer>();
+    });
+      producer.DefaultTopic("source-topic");
     });
   });
 });
 
-//        return services.AddKafka(kafka => kafka
-//            .UseMicrosoftLog()
-//            .AddCluster(cluster => cluster
-//                .WithBrokers([kafkaConfiguration.ServiceUri])
-//                .WithSecurityInformation(h =>
-//                {
-//                    h.SecurityProtocol = SecurityProtocol.Ssl;
-//                    h.SslCaPem = kafkaConfiguration.CaCertificate;
-//                    h.SslCertificatePem = kafkaConfiguration.AccessCertificate;
-//                    h.SslKeyPem = kafkaConfiguration.AccessKey;
-//                })
-//                .WithSchemaRegistry(a =>
-//                {
-//                    a.Url = kafkaConfiguration.SchemaUrl;
-//                    a.BasicAuthUserInfo = kafkaConfiguration.SchemaBasicAuth;
-//                })
-//                .AddProducer(Constants.ProducerName, kafkaConfiguration.Topic)));
-
-
 var app = builder.Build();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -63,6 +57,15 @@ app.MapGet("/weatherforecast", () =>
     return forecast;
 })
 .WithName("GetWeatherForecast");
+
+var producerAccessor = app.Services.GetRequiredService<IProducerAccessor>();
+var producer = producerAccessor.GetProducer("producer-1");
+WeatherForecast forecast = new(DateOnly.FromDateTime(DateTime.Now), 25, "Warm");
+
+await producer.ProduceAsync(null, forecast);
+
+var kafkaBus = app.Services.CreateKafkaBus();
+await kafkaBus.StartAsync();
 
 app.Run();
 
