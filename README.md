@@ -45,6 +45,7 @@ avn service topic-create kafka-14f487f0 destination-topic \
 cd eda-api
 dotnet add package KafkaFlow
 dotnet add package KafkaFlow.Microsoft.DependencyInjection
+dotnet add package KafkaFlow.Serializer.JsonCore
 ```
 
 ## Resources
