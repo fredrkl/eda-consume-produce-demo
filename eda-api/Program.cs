@@ -28,6 +28,10 @@ builder.Services.AddKafka(kafka => {
       });
       producer.DefaultTopic("source-topic");
     });
+    cluster.AddConsumer(consumer => consumer
+      .Topic("source-topic")
+      .WithGroupId("source-group")
+    );
   });
 });
 
