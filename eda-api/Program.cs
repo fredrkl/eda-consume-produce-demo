@@ -31,6 +31,11 @@ builder.Services.AddKafka(kafka => {
     cluster.AddConsumer(consumer => consumer
       .Topic("source-topic")
       .WithGroupId("source-group")
+      .WithBufferSize(100)
+      .WithWorkersCount(10)
+      .AddMiddlewares(middlewares => middlewares
+        .AddDeserializer<JsonCoreDeserializer>()
+      )
     );
   });
 });
