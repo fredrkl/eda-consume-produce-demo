@@ -1,3 +1,8 @@
+# [v1.7.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.6.0...v1.7.0) (2025-10-31)
+
+## ✨ New Features
+- [`4eb8a27`](https://github.com/fredrkl/eda-consume-produce-demo/commit/4eb8a27)  Consumer
+
 # [v1.6.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.5.0...v1.6.0) (2025-10-29)
 
 ## ✨ New Features
