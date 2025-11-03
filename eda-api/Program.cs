@@ -1,5 +1,6 @@
 using eda_api.events;
 using KafkaFlow;
+using KafkaFlow.Admin.Dashboard;
 using KafkaFlow.Producers;
 using KafkaFlow.Serializer;
 
@@ -16,6 +17,8 @@ Console.WriteLine("CA_CERTIFICATE:{0}", builder.Configuration["CA_CERTIFICATE"])
 builder.Services.AddKafka(kafka => {
   kafka.AddCluster(cluster => cluster
     .WithBrokers(["kafka-14f487f0-fredrkl-0955.k.aivencloud.com:14350"])
+    .EnableAdminMessages("kafka-flow.admin")
+    .EnableTelemetry("kafka-flow.admin")
     .WithSecurityInformation(security => {
       security.SecurityProtocol = KafkaFlow.Configuration.SecurityProtocol.Ssl;
       security.SslKeyPem = builder.Configuration["ACCESS_KEY"];
@@ -42,9 +45,8 @@ builder.Services.AddKafka(kafka => {
       .AddMiddlewares(middlewares => middlewares
         .AddDeserializer<JsonCoreDeserializer>()
         .AddTypedHandlers(handlers => handlers
-          .AddHandler<WeatherForecastHandler>()
+          .AddHandler<WeatherForecastHandler>())
         )
-      )
     )
   );
 });
@@ -80,6 +82,8 @@ app.MapGet("/weatherforecast", async (IProducerAccessor producerAccessor) =>
 })
 .WithName("GetWeatherForecast");
 
+// Kafka Flow
+app.UseKafkaFlowDashboard();
 var kafkaBus = app.Services.CreateKafkaBus();
 await kafkaBus.StartAsync();
 

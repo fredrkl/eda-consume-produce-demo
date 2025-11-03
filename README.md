@@ -37,6 +37,10 @@ avn service topic-create kafka-14f487f0 source-topic \
 avn service topic-create kafka-14f487f0 destination-topic \
 --partitions 3 \
 --replication 3
+
+avn service topic-create kafka-14f487f0 kafka-flow.admin \
+--partitions 3 \
+--replication 3
 ```
 
 ## Adding KafkaFlow to the project
@@ -47,6 +51,10 @@ dotnet add package KafkaFlow
 dotnet add package KafkaFlow.Microsoft.DependencyInjection
 dotnet add package KafkaFlow.Serializer.JsonCore
 ```
+
+## Lessons learned
+
+- KafkaFlow admin does not create the admin topic automatically.
 
 ## Resources
 
