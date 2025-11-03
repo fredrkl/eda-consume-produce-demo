@@ -80,12 +80,6 @@ app.MapGet("/weatherforecast", async (IProducerAccessor producerAccessor) =>
 })
 .WithName("GetWeatherForecast");
 
-var producerAccessor = app.Services.GetRequiredService<IProducerAccessor>();
-var producer = producerAccessor.GetProducer("producer-1");
-WeatherForecast forecast = new(DateOnly.FromDateTime(DateTime.Now), Random.Shared.Next(-20, 55), "Warm");
-
-//await producer.ProduceAsync(null, forecast);
-
 var kafkaBus = app.Services.CreateKafkaBus();
 await kafkaBus.StartAsync();
 
