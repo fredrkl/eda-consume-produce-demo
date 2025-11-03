@@ -10,9 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-Console.WriteLine("ACCESS_KEY:{0}", builder.Configuration["ACCESS_KEY"]);
-Console.WriteLine("ACCESS_CERTIFICATE:{0}", builder.Configuration["ACCESS_CERTIFICATE"]);
-Console.WriteLine("CA_CERTIFICATE:{0}", builder.Configuration["CA_CERTIFICATE"]);
+//Console.WriteLine("ACCESS_KEY:{0}", builder.Configuration["ACCESS_KEY"]);
+//Console.WriteLine("ACCESS_CERTIFICATE:{0}", builder.Configuration["ACCESS_CERTIFICATE"]);
+//Console.WriteLine("CA_CERTIFICATE:{0}", builder.Configuration["CA_CERTIFICATE"]);
 
 builder.Services.AddKafka(kafka => {
   kafka.AddCluster(cluster => cluster
