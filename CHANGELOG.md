@@ -1,3 +1,8 @@
+# [v1.12.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.11.0...v1.12.0) (2025-11-03)
+
+## ✨ New Features
+- [`d0fd4c1`](https://github.com/fredrkl/eda-consume-produce-demo/commit/d0fd4c1)  Add destination producer
+
 # [v1.11.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.10.0...v1.11.0) (2025-11-03)
 
 ## ✨ New Features
