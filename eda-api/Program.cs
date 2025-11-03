@@ -93,6 +93,11 @@ app.UseKafkaFlowDashboard();
 var kafkaBus = app.Services.CreateKafkaBus();
 await kafkaBus.StartAsync();
 
+app.Lifetime.ApplicationStopping.Register(() =>
+{
+    kafkaBus.StopAsync().GetAwaiter().GetResult();
+});
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
