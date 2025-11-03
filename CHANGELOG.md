@@ -1,3 +1,8 @@
+# [v1.10.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.9.0...v1.10.0) (2025-11-03)
+
+## ✨ New Features
+- [`fdf90c2`](https://github.com/fredrkl/eda-consume-produce-demo/commit/fdf90c2)  Better random data
+
 # [v1.9.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.8.0...v1.9.0) (2025-11-03)
 
 ## ✨ New Features
