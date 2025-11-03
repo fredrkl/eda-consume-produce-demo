@@ -6,6 +6,14 @@ process them, and produce new events to a target system in a transactional
 manner. The repo uses the [KafkaFlow](https://github.com/Farfetch/kafkaflow)
 library to facilitate Kafka integration.
 
+```mermaid
+graph LR
+    A[eda-application] -->|1. Produce Event| B[source-topic]
+    A -->|2. Consume Event| B[Source Topic]
+    A -->|3. Produce new event \n during event processing| D[Destination Topic]
+    A -->|Consume Event| E[Target System]
+```
+
 ## API Produce event endpoint
 
 ```bash
