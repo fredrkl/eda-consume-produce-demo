@@ -1,3 +1,8 @@
+# [v1.8.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.7.0...v1.8.0) (2025-10-31)
+
+## ✨ New Features
+- [`879daf5`](https://github.com/fredrkl/eda-consume-produce-demo/commit/879daf5)  Deserializer
+
 # [v1.7.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.6.0...v1.7.0) (2025-10-31)
 
 ## ✨ New Features
