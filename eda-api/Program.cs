@@ -37,6 +37,12 @@ builder.Services.AddKafka(kafka => {
       }));
       producer.DefaultTopic("source-topic");
     })
+    .AddProducer("destination", producer => {
+      producer.AddMiddlewares(middlewares => {
+        middlewares.AddSerializer<JsonCoreSerializer>();
+      });
+      producer.DefaultTopic("destination-topic");
+    })
     .AddConsumer(consumer => consumer
       .Topic("source-topic")
       .WithGroupId("source-group")
