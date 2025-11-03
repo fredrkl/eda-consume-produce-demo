@@ -1,3 +1,8 @@
+# [v1.11.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.10.0...v1.11.0) (2025-11-03)
+
+## ✨ New Features
+- [`f636f3b`](https://github.com/fredrkl/eda-consume-produce-demo/commit/f636f3b)  Admin GUI
+
 # [v1.10.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.9.0...v1.10.0) (2025-11-03)
 
 ## ✨ New Features
