@@ -1,3 +1,4 @@
+using eda_api.events;
 using KafkaFlow;
 using KafkaFlow.Producers;
 using KafkaFlow.Serializer;
@@ -26,6 +27,11 @@ builder.Services.AddKafka(kafka => {
       producer.AddMiddlewares(middlewares => {
         middlewares.AddSerializer<JsonCoreSerializer>();
       });
+      producer.WithProducerConfig(new Confluent.Kafka.ProducerConfig(new Dictionary<string, string>() {
+        { "enable.idempotence", "true" },
+        { "message.send.max.retries", "3" },
+        { "retry.backoff.ms", "100" }
+      }));
       producer.DefaultTopic("source-topic");
     });
     cluster.AddConsumer(consumer => consumer
@@ -35,6 +41,9 @@ builder.Services.AddKafka(kafka => {
       .WithWorkersCount(10)
       .AddMiddlewares(middlewares => middlewares
         .AddDeserializer<JsonCoreDeserializer>()
+        .AddTypedHandlers(handlers => handlers
+          .AddHandler<WeatherForecastHandler>()
+        )
       )
     );
   });
