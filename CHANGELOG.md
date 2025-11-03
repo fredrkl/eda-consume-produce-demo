@@ -1,3 +1,8 @@
+# [v1.13.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.12.0...v1.13.0) (2025-11-03)
+
+## ✨ New Features
+- [`f95645b`](https://github.com/fredrkl/eda-consume-produce-demo/commit/f95645b)  Gracefull shutdown
+
 # [v1.12.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.11.0...v1.12.0) (2025-11-03)
 
 ## ✨ New Features
