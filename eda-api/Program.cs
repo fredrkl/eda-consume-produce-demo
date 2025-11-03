@@ -65,7 +65,7 @@ var summaries = new[]
 app.MapGet("/weatherforecast", async (IProducerAccessor producerAccessor) =>
 {
   var producer = producerAccessor.GetProducer("producer-1");
-  WeatherForecast forecast_to_kafka = new(DateOnly.FromDateTime(DateTime.Now), Random.Shared.Next(-20, 55), "Warm");
+  WeatherForecast forecast_to_kafka = new(DateOnly.FromDateTime(DateTime.Now), Random.Shared.Next(-20, 55), summaries[Random.Shared.Next(0,9)]);
   _ = await producer.ProduceAsync(null, forecast_to_kafka);
 
     var forecast =  Enumerable.Range(1, 5).Select(index =>
