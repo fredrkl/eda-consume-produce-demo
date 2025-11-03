@@ -14,16 +14,16 @@ Console.WriteLine("ACCESS_CERTIFICATE:{0}", builder.Configuration["ACCESS_CERTIF
 Console.WriteLine("CA_CERTIFICATE:{0}", builder.Configuration["CA_CERTIFICATE"]);
 
 builder.Services.AddKafka(kafka => {
-  kafka.AddCluster(cluster => {
-    cluster.WithBrokers(["kafka-14f487f0-fredrkl-0955.k.aivencloud.com:14350"]);
-    cluster.WithSecurityInformation(security => {
+  kafka.AddCluster(cluster => cluster
+    .WithBrokers(["kafka-14f487f0-fredrkl-0955.k.aivencloud.com:14350"])
+    .WithSecurityInformation(security => {
       security.SecurityProtocol = KafkaFlow.Configuration.SecurityProtocol.Ssl;
       security.SslKeyPem = builder.Configuration["ACCESS_KEY"];
       security.SslCertificatePem = builder.Configuration["ACCESS_CERTIFICATE"];
       security.SslCaPem = builder.Configuration["CA_CERTIFICATE"];
       security.EnableSslCertificateVerification = true;
-    });
-    cluster.AddProducer("producer-1", producer => {
+    })
+    .AddProducer("producer-1", producer => {
       producer.AddMiddlewares(middlewares => {
         middlewares.AddSerializer<JsonCoreSerializer>();
       });
@@ -33,8 +33,8 @@ builder.Services.AddKafka(kafka => {
         { "retry.backoff.ms", "100" }
       }));
       producer.DefaultTopic("source-topic");
-    });
-    cluster.AddConsumer(consumer => consumer
+    })
+    .AddConsumer(consumer => consumer
       .Topic("source-topic")
       .WithGroupId("source-group")
       .WithBufferSize(100)
@@ -45,8 +45,8 @@ builder.Services.AddKafka(kafka => {
           .AddHandler<WeatherForecastHandler>()
         )
       )
-    );
-  });
+    )
+  );
 });
 
 var app = builder.Build();
