@@ -30,19 +30,22 @@ builder.Services.AddKafka(kafka => {
       producer.AddMiddlewares(middlewares => {
         middlewares.AddSerializer<JsonCoreSerializer>();
       });
-      producer.WithProducerConfig(new Confluent.Kafka.ProducerConfig(new Dictionary<string, string>() {
-        { "enable.idempotence", "true" },
-        { "message.send.max.retries", "3" },
-        { "retry.backoff.ms", "100" }
-      }));
       producer.DefaultTopic("source-topic");
     })
-    .AddProducer("destination", producer => {
-      producer.AddMiddlewares(middlewares => {
+    .AddProducer("destination", producer => producer
+      .AddMiddlewares(middlewares => {
         middlewares.AddSerializer<JsonCoreSerializer>();
-      });
-      producer.DefaultTopic("destination-topic");
-    })
+      })
+      .DefaultTopic("destination-topic")
+      .WithProducerConfig(new Confluent.Kafka.ProducerConfig(new Dictionary<string, string>() {
+        { "enable.idempotence", "true" },
+        { "acks", "all" },
+        { "transactional.id", "destination-tx-1" },  // required for transactions
+        { "max.in.flight.requests.per.connection", "1" }, // ensures ordering
+        { "retries", "3" },
+        { "retry.backoff.ms", "100" }
+      }))
+    )
     .AddConsumer(consumer => consumer
       .Topic("source-topic")
       .WithGroupId("source-group")

@@ -1,13 +1,18 @@
 using KafkaFlow;
+using KafkaFlow.Producers;
 
 namespace eda_api.events
 {
-    public class WeatherForecastHandler : IMessageHandler<WeatherForecast>
+  public class WeatherForecastHandler(IProducerAccessor producerAccessor) : IMessageHandler<WeatherForecast>
+  {
+    Task IMessageHandler<WeatherForecast>.Handle(IMessageContext context, WeatherForecast message)
     {
-        Task IMessageHandler<WeatherForecast>.Handle(IMessageContext context, WeatherForecast message)
-        {
-          Console.WriteLine($"Received message: {message.Date} - {message.Summary} - {message.TemperatureC}C");
-          return Task.CompletedTask;
-        }
+      var producer = producerAccessor.GetProducer("destination");
+      Console.WriteLine($"Received message: {message.Date} - {message.Summary} - {message.TemperatureC}C");
+      producer.ProduceAsync(null, message);
+
+      // this is where I should test for exceptions and transactions
+      return Task.CompletedTask;
     }
+  }
 }
