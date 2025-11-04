@@ -60,6 +60,15 @@ dotnet add package KafkaFlow.Microsoft.DependencyInjection
 dotnet add package KafkaFlow.Serializer.JsonCore
 ```
 
+## Kafka transactions
+
+I wanted to showcase how to use Kafka transactions to ensure that consuming and
+producing events are done atomically. This means that if the processing of an
+event fails, the consumed event is not acknowledged, and no new events are
+produced. We have in our project deliberately stated that producing should
+happen as the last statement in the event handler, thus minimizing the risk of
+producing an event without having processed the consumed event.
+
 ## Lessons learned
 
 - KafkaFlow admin does not create the admin topic automatically.
