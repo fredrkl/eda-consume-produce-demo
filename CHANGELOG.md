@@ -1,3 +1,8 @@
+# [v1.14.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.13.0...v1.14.0) (2025-11-04)
+
+## ✨ New Features
+- [`8a290ac`](https://github.com/fredrkl/eda-consume-produce-demo/commit/8a290ac)  Showcasing consume, transform and produce
+
 # [v1.13.0](https://github.com/fredrkl/eda-consume-produce-demo/compare/v1.12.0...v1.13.0) (2025-11-03)
 
 ## ✨ New Features
