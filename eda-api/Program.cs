@@ -37,6 +37,7 @@ builder.Services.AddKafka(kafka => {
         middlewares.AddSerializer<JsonCoreSerializer>();
       })
       .DefaultTopic("destination-topic")
+      .WithAcks(Acks.All)
       .WithProducerConfig(new Confluent.Kafka.ProducerConfig(new Dictionary<string, string>() {
         { "enable.idempotence", "true" },
         { "acks", "all" },
