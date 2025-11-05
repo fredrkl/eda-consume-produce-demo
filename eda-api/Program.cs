@@ -38,14 +38,14 @@ builder.Services.AddKafka(kafka => {
       })
       .DefaultTopic("destination-topic")
       .WithAcks(Acks.All)
-      .WithProducerConfig(new Confluent.Kafka.ProducerConfig(new Dictionary<string, string>() {
-        { "enable.idempotence", "true" },
-        { "acks", "all" },
-        { "transactional.id", "destination-tx-1" },  // required for transactions
-        { "max.in.flight.requests.per.connection", "1" }, // ensures ordering
-        { "retries", "3" },
-        { "retry.backoff.ms", "100" }
-      }))
+      //.WithProducerConfig(new Confluent.Kafka.ProducerConfig(new Dictionary<string, string>() {
+      //  { "enable.idempotence", "true" },
+      //  { "acks", "all" },
+      //  { "transactional.id", "destination-tx-1" },  // required for transactions
+      //  { "max.in.flight.requests.per.connection", "1" }, // ensures ordering
+      //  { "retries", "3" },
+      //  { "retry.backoff.ms", "100" }
+      //}))
     )
     .AddConsumer(consumer => consumer
       .Topic("source-topic")
