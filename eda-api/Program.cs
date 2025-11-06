@@ -52,6 +52,7 @@ builder.Services.AddKafka(kafka => {
       .WithGroupId("source-group")
       .WithBufferSize(100)
       .WithWorkersCount(10)
+      .WithAutoOffsetReset(AutoOffsetReset.Latest)
       .AddMiddlewares(middlewares => middlewares
         .AddDeserializer<JsonCoreDeserializer>()
         .AddTypedHandlers(handlers => handlers
