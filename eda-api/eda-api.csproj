@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="KafkaFlow" Version="4.0.1" />
-    <PackageReference Include="KafkaFlow.Admin" Version="4.0.1" />
+    <PackageReference Include="KafkaFlow.Admin" Version="4.1.0" />
     <PackageReference Include="KafkaFlow.Admin.Dashboard" Version="4.0.1" />
     <PackageReference Include="KafkaFlow.Admin.WebApi" Version="4.0.1" />
     <PackageReference Include="KafkaFlow.Microsoft.DependencyInjection" Version="4.0.1" />
